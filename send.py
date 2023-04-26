@@ -9,7 +9,7 @@ from logging import getLogger,config
 import yaml
 from dotenv import load_dotenv
 
-
+#環境変数(.env)の読み込み
 load_dotenv()
  
 #定義ファイルの読み込み
@@ -21,7 +21,7 @@ with open(yaml_path, 'r') as yml:
 config.dictConfig(dic)
 
 connection_str = os.environ['EVENT_HUB_CONNECTION_STR']
-consumer_group = '<< CONSUMER GROUP >>'
+# consumer_group = '<< CONSUMER GROUP >>' #not use
 eventhub_name = os.environ['EVENT_HUB_NAME']
 batch_size = int(os.environ['batch_size'])
 delay_time = float(os.environ['delay_time'])

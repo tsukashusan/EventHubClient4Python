@@ -1,9 +1,5 @@
 import os
 import asyncio
-from datetime import date, datetime
-import json
-from azure.eventhub.aio import EventHubProducerClient  # The package name suffixed with ".aio" for async
-from azure.eventhub import EventData
 from logging import getLogger,config
 import yaml
 import send
