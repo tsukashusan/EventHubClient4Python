@@ -36,10 +36,10 @@ async def create_batch(client, logger):
     event_data_batch = await client.create_batch()
     for i in range(batch_size):
         try:
-            sensorid = random.randint(a=3, b=100)
-            temperature = random.uniform(a=0, b=100) % 100
-            humidit = random.uniform(a=0, b=100) % 100
-            status = "OK" if random.randint(a=0, b=100) % 2 == 0 else "NG"
+            sensorid = random.randint(a=1, b=3)
+            temperature = random.uniform(a=0, b=50) % 100
+            humidit = random.uniform(a=0, b=100)
+            status = "OK" if (40 < temperature or 30 >= humidit) else "NG"
             senddatetime = datetime.now()
             payload = json.dumps({'sensor_id': sensorid, 'sensor_temp': temperature,'sensor_humidity': humidit ,'sensor_status': status, 'sensor_sentdatetime': senddatetime}, default=json_serial)
             logger.info(f'"payload={payload}"')
