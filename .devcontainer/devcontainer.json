@@ -48,6 +48,6 @@
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "python3 -m venv .venv;. ./.venv/bin/activate;python -m ensurepip --upgrade;pip install debugpy;pip install --upgrade pip;pip install -r requirements.txt",
-	"onCreateCommand": "sudo sudo sh -c \"echo -e \"nameserver 1.1.1.1\nnameserver 9.9.9.9\n\" >> /etc/resolv.conf\";curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64;chmod +x ./bicep;sudo mv ./bicep /usr/local/bin/bicep; bicep --help"
+	"onCreateCommand": "sudo sh -c \"echo -e \"nameserver 1.1.1.1\nnameserver 9.9.9.9\n\" >> /etc/resolv.conf\";curl -L https://aka.ms/InstallAzureCli | bash"
 
 }
