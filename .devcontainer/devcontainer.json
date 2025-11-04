@@ -48,6 +48,6 @@
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "python3 -m venv .venv;. ./.venv/bin/activate;python -m ensurepip --upgrade;pip install debugpy;pip install --upgrade pip;pip install -r requirements.txt",
-	"onCreateCommand": "sudo sh -c \"echo -e \"nameserver 1.1.1.1\nnameserver 9.9.9.9\n\" >> /etc/resolv.conf\";curl -L https://aka.ms/InstallAzureCli | bash"
+	"onCreateCommand": "sudo sh -c \"echo 'nameserver 1.1.1.1\nnameserver 9.9.9.9' >> /etc/resolv.conf\";curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash"
 
 }
