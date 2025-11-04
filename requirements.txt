@@ -2,3 +2,5 @@ azure-eventhub
 azure-eventhub-checkpointstoreblob-aio
 python-dotenv
 PyYAML
+papermill
+ipykernel

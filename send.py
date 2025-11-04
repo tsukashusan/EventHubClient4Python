@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import asyncio
 import random
@@ -47,9 +48,11 @@ async def create_batch(client, logger):
             event_data_batch.add(EventData(payload))
         except ValueError as e:
             print(e)
+            logger.error(f'ValueError: {e}')
             raise e
         except Exception as e:
             print(e)
+            logger.error(f'Exception: {e}')
             raise e
     return event_data_batch
 
@@ -63,6 +66,7 @@ async def send(logger):
                 await client.send_batch(batch_data)
                 await asyncio.sleep(delay_time)
             except Exception as e:
+                logger.error(f'Exception during send: {e}')
                 can_send = False
 
 if __name__ == '__main__':

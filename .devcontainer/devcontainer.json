@@ -1,0 +1,53 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Python Debug",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/vscode/devcontainers/base:latest",
+	"runArgs": [
+		"--platform=linux/amd64"
+	],
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2.5.3": {
+			"installOhMyZsh": true,
+			"configureZshAsDefaultShell": true
+		},
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "7.5.4"
+		},
+        "ghcr.io/devcontainers/features/python": {
+            "version": "3.14"
+        }
+	},
+	"portsAttributes": {
+		"6080": {
+			"label": "desktop"
+		}
+	},
+	// Configure tool-specific properties.
+	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.debugpy",
+				"ms-python.vscode-python-envs",
+				"ms-toolsai.jupyter"
+			],
+			"settings": {
+				"dev.containers.dokerCredentialHelper": false
+			}
+		}
+	},
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+	"remoteUser": "vscode",
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "python3 -m venv .venv;. ./.venv/bin/activate;python -m ensurepip --upgrade;pip install debugpy;pip install --upgrade pip;pip install -r requirements.txt",
+	"onCreateCommand": "sudo sudo sh -c \"echo -e \"nameserver 1.1.1.1\nnameserver 9.9.9.9\n\" >> /etc/resolv.conf\";curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64;chmod +x ./bicep;sudo mv ./bicep /usr/local/bin/bicep; bicep --help"
+
+}
